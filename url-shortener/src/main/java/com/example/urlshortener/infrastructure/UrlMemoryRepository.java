@@ -36,11 +36,7 @@ public class UrlMemoryRepository implements UrlRepository {
     @Override
     public int getCnt(String shorten) {
         Optional<Url> findUrl= urlStore.stream().filter(url -> url.getShortenUrl().equals(shorten)).findAny();
-        if(findUrl.isPresent()){
-            return findUrl.get().getRequestCnt();
-        } else{
-            return -1;
-        }
+        return findUrl.map(Url::getRequestCnt).orElse(-1);
     }
 
     @Override

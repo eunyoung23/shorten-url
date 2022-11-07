@@ -1,7 +1,5 @@
 package com.example.urlshortener.domain;
 
-import com.example.urlshortener.domain.Url;
-
 import java.util.Optional;
 
 public interface UrlRepository {

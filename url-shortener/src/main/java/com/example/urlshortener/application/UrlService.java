@@ -26,12 +26,8 @@ public class UrlService {
     }
 
     public String getOriginal(String shortenUrl){
-        String originalUrl=null;
         Optional<Url> url = urlMemoryRepository.getOriginalUrl(shortenUrl);
-        if(url.isPresent()){
-            originalUrl=url.get().getOriginalUrl();
-        }
-        return originalUrl;
+        return url.map(Url::getOriginalUrl).orElse(null);
     }
 
     public void addRequestCnt(String originalUrl){
