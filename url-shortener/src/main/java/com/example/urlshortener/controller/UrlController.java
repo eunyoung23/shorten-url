@@ -22,13 +22,13 @@ public class UrlController {
         this.urlService = urlService;
     }
 
-    @PostMapping("/create")
+    @PostMapping("")
     public ResponseEntity<BaseResponse> createUrl(@RequestBody UrlRequest urlRequest){
         String shortenUrl=urlService.createUrl(urlRequest.getOriginalUrl());
         return new ResponseEntity<>(new BaseResponse(true,"success",200,shortenUrl),HttpStatus.OK);
     }
 
-    @GetMapping("/redirect")
+    @GetMapping("")
     public ResponseEntity<Object> redirectUrl(@RequestParam String shortenUrl) throws URISyntaxException {
         String original=urlService.getOriginal(shortenUrl);
         urlService.addRequestCnt(original);
@@ -41,7 +41,7 @@ public class UrlController {
         }
     }
 
-    @GetMapping("/requestCnt")
+    @GetMapping("/count")
     public ResponseEntity<BaseResponse> getRequestCnt(@RequestParam String shortenUrl){
         int cnt=urlService.getCnt(shortenUrl);
         if(cnt==-1){
