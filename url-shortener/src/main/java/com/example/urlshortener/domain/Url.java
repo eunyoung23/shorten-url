@@ -1,4 +1,4 @@
-package com.example.urlshortener.entity;
+package com.example.urlshortener.domain;
 
 import lombok.Builder;
 import lombok.Getter;

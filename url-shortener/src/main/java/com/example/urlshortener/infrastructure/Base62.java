@@ -1,4 +1,4 @@
-package com.example.urlshortener.util;
+package com.example.urlshortener.infrastructure;
 
 import org.springframework.stereotype.Component;
 

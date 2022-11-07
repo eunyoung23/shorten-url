@@ -1,6 +1,6 @@
-package com.example.urlshortener.repository;
+package com.example.urlshortener.domain;
 
-import com.example.urlshortener.entity.Url;
+import com.example.urlshortener.domain.Url;
 
 import java.util.Optional;
 

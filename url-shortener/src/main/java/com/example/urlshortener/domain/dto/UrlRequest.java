@@ -1,4 +1,4 @@
-package com.example.urlshortener.dto;
+package com.example.urlshortener.domain.dto;
 
 import lombok.Getter;
 

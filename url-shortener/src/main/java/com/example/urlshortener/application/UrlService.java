@@ -1,7 +1,7 @@
-package com.example.urlshortener.service;
+package com.example.urlshortener.application;
 
-import com.example.urlshortener.entity.Url;
-import com.example.urlshortener.repository.UrlMemoryRepository;
+import com.example.urlshortener.domain.Url;
+import com.example.urlshortener.infrastructure.UrlMemoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

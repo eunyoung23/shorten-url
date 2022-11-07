@@ -1,10 +1,7 @@
-package com.example.urlshortener.controller;
+package com.example.urlshortener.presentation;
 
-import com.example.urlshortener.config.CreateUrlResponse;
-import com.example.urlshortener.config.FailResponse;
-import com.example.urlshortener.config.GetCntResponse;
-import com.example.urlshortener.dto.UrlRequest;
-import com.example.urlshortener.service.UrlService;
+import com.example.urlshortener.domain.dto.UrlRequest;
+import com.example.urlshortener.application.UrlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

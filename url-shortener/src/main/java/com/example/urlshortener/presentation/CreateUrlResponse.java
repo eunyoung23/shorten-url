@@ -1,4 +1,4 @@
-package com.example.urlshortener.config;
+package com.example.urlshortener.presentation;
 
 import lombok.Getter;
 

@@ -1,7 +1,7 @@
-package com.example.urlshortener.repository;
+package com.example.urlshortener.infrastructure;
 
-import com.example.urlshortener.entity.Url;
-import com.example.urlshortener.util.Base62;
+import com.example.urlshortener.domain.Url;
+import com.example.urlshortener.domain.UrlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class UrlMemoryRepository implements UrlRepository{
+public class UrlMemoryRepository implements UrlRepository {
 
     private static List<Url> urlStore=new ArrayList<>();
     private static long sequence=1L;
