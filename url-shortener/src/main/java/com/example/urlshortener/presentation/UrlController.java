@@ -21,13 +21,13 @@ public class UrlController {
         this.urlService = urlService;
     }
 
-    @PostMapping("")
+    @PostMapping("/`")
     public ResponseEntity<CreateUrlResponse> createUrl(@RequestBody UrlRequest urlRequest){
         String shortenUrl=urlService.createUrl(urlRequest.getOriginalUrl());
         return new ResponseEntity<>(new CreateUrlResponse(true,"success",200,shortenUrl),HttpStatus.OK);
     }
 
-    @GetMapping("")
+    @GetMapping("/")
     public ResponseEntity<Object> redirectUrl(@RequestParam String shortenUrl) throws URISyntaxException {
         String original=urlService.getOriginal(shortenUrl);
         urlService.addRequestCnt(original);
