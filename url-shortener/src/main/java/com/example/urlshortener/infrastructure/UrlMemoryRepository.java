@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @Repository
 public class UrlMemoryRepository implements UrlRepository {
@@ -23,8 +24,9 @@ public class UrlMemoryRepository implements UrlRepository {
 
     @Override
     public synchronized String save(String originalUrl) {
-        if(urlStore.stream().filter(url->originalUrl.equals(url.getOriginalUrl())).count()>0){
-             return urlStore.stream().filter(url -> originalUrl.equals(url.getOriginalUrl())).findFirst().get().getShortenUrl();
+        Stream<Url> getOriginalUrlStream = urlStore.stream().filter(url -> originalUrl.equals(url.getOriginalUrl()));
+        if(getOriginalUrlStream.count()>0){
+             return getOriginalUrlStream.findFirst().get().getOriginalUrl();
         }else{
             String shortenUrl=base62.encoding(sequence++);
             Url url=Url.urlBuiler(originalUrl,shortenUrl,0);
