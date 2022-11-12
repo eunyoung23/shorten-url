@@ -5,14 +5,10 @@ import lombok.Getter;
 @Getter
 public class FailResponse {
 
-    private final Boolean isSuccess;
-    private final String message;
-    private final int code;
+    private final int statusCode;
 
-    public FailResponse(Boolean isSuccess, String message, int code) {
-        this.isSuccess = isSuccess;
-        this.message = message;
-        this.code = code;
+    public FailResponse(int statusCode) {
+        this.statusCode = statusCode;
     }
 
 }

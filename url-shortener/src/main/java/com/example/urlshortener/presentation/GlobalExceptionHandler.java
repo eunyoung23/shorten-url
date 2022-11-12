@@ -9,8 +9,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<FailResponse> handler(){
-        return ResponseEntity.status(404).body(new FailResponse(false,"not found",404));
+        return ResponseEntity.status(404).body(new FailResponse(404));
     }
-
 
 }

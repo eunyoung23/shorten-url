@@ -5,16 +5,11 @@ import lombok.Getter;
 @Getter
 public class GetCntResponse {
 
-    private final Boolean isSuccess;
-    private final String message;
-    private final int code;
+    private final int statusCode;
     private final int count;
 
-    public GetCntResponse(Boolean isSuccess, String message, int code, int count) {
-        this.isSuccess = isSuccess;
-        this.message = message;
-        this.code = code;
+    public GetCntResponse(int statusCode, int count) {
+        this.statusCode = statusCode;
         this.count = count;
     }
-
 }

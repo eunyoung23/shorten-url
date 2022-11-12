@@ -5,16 +5,11 @@ import lombok.Getter;
 @Getter
 public class CreateUrlResponse {
 
-    private final Boolean isSuccess;
-    private final String message;
-    private final int code;
+    private final int statusCode;
     private final String shortenUrl;
 
-    public CreateUrlResponse(Boolean isSuccess, String message, int code, String data) {
-        this.isSuccess = isSuccess;
-        this.message = message;
-        this.code = code;
-        this.shortenUrl = data;
+    public CreateUrlResponse(int statusCode, String shortenUrl) {
+        this.statusCode = statusCode;
+        this.shortenUrl = shortenUrl;
     }
-
 }
