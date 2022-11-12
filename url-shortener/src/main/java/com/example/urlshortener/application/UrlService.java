@@ -5,8 +5,6 @@ import com.example.urlshortener.infrastructure.UrlMemoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class UrlService {
 
@@ -22,12 +20,11 @@ public class UrlService {
     }
 
     public int getCnt(String shortenUrl){
-        return urlMemoryRepository.getCnt(shortenUrl);
+        return urlMemoryRepository.getUrl(shortenUrl).map(Url::getRequestCnt).orElse(-1);
     }
 
     public String getOriginal(String shortenUrl){
-        Optional<Url> url = urlMemoryRepository.getOriginalUrl(shortenUrl);
-        return url.map(Url::getOriginalUrl).orElse(null);
+        return urlMemoryRepository.getUrl(shortenUrl).map(Url::getOriginalUrl).orElse(null);
     }
 
     public void addRequestCnt(String originalUrl){

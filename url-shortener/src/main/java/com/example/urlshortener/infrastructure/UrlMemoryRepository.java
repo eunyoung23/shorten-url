@@ -26,7 +26,7 @@ public class UrlMemoryRepository implements UrlRepository {
     public synchronized String save(String originalUrl) {
         Stream<Url> getOriginalUrlStream = urlStore.stream().filter(url -> originalUrl.equals(url.getOriginalUrl()));
         if(getOriginalUrlStream.count()>0){
-             return getOriginalUrlStream.findFirst().get().getOriginalUrl();
+             return getOriginalUrlStream.findFirst().get().getShortenUrl();
         }else{
             String shortenUrl=base62.encoding(sequence++);
             Url url=Url.urlBuiler(originalUrl,shortenUrl,0);
@@ -36,13 +36,7 @@ public class UrlMemoryRepository implements UrlRepository {
     }
 
     @Override
-    public int getCnt(String shorten) {
-        Optional<Url> findUrl= urlStore.stream().filter(url -> url.getShortenUrl().equals(shorten)).findAny();
-        return findUrl.map(Url::getRequestCnt).orElse(-1);
-    }
-
-    @Override
-    public Optional<Url> getOriginalUrl(String shortenUrl) {
+    public Optional<Url> getUrl(String shortenUrl) {
         return urlStore.stream().filter(a->a.getShortenUrl().equals(shortenUrl)).findFirst();
     }
 

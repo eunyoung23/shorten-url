@@ -5,8 +5,7 @@ import java.util.Optional;
 public interface UrlRepository {
 
     String save(String originalUrl);
-    int getCnt(String shortenUrl);
-    Optional<Url> getOriginalUrl(String shortenUrl);
+    Optional<Url> getUrl(String shortenUrl);
     void addRequestCnt(String original);
 
 }
