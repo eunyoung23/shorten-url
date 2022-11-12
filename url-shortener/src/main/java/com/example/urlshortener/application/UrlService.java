@@ -20,7 +20,7 @@ public class UrlService {
     }
 
     public int getCnt(String shortenUrl){
-        return urlMemoryRepository.getUrl(shortenUrl).map(Url::getRequestCnt).orElse(-1);
+        return urlMemoryRepository.getUrl(shortenUrl).map(Url::getRequestCnt).get();
     }
 
     public String getOriginal(String shortenUrl){

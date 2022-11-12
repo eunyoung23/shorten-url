@@ -31,24 +31,17 @@ public class UrlController {
     public ResponseEntity<Object> redirectUrl(@RequestParam String shortenUrl) throws URISyntaxException {
         String original=urlService.getOriginal(shortenUrl);
         urlService.addRequestCnt(original);
-        if(original==null){
-            return new ResponseEntity<>(new FailResponse(false,"not found",404),HttpStatus.NOT_FOUND);
-        }else{
-            HttpHeaders httpHeaders=new HttpHeaders();
-            httpHeaders.setLocation(new URI(original));
-            return new ResponseEntity<>(httpHeaders,HttpStatus.MOVED_PERMANENTLY);
-        }
+
+        HttpHeaders httpHeaders=new HttpHeaders();
+        httpHeaders.setLocation(new URI(original));
+        return new ResponseEntity<>(httpHeaders,HttpStatus.MOVED_PERMANENTLY);
     }
 
     @GetMapping("/count")
     public ResponseEntity<Object> getRequestCnt(@RequestParam String shortenUrl){
         int cnt=urlService.getCnt(shortenUrl);
-        if(cnt==-1){
-            return new ResponseEntity<>(new FailResponse(false,"not found",404),HttpStatus.NOT_FOUND);
-        }else{
-            return new ResponseEntity<>(new GetCntResponse(true,"success",200,cnt), HttpStatus.OK);
-        }
 
+        return new ResponseEntity<>(new GetCntResponse(true,"success",200,cnt), HttpStatus.OK);
     }
 
 
