@@ -23,8 +23,8 @@ public class UrlListRepository implements UrlRepository {
     }
 
     @Override
-    public String getShortenByOriginalUrl(String originalUrl) {
-        return urlStore.stream().filter(a->a.getOriginalUrl().equals(originalUrl)).findFirst().get().getShortenUrl();
+    public Optional<Url> getUrlByOriginalUrl(String originalUrl) {
+        return urlStore.stream().filter(a -> a.getOriginalUrl().equals(originalUrl)).findFirst();
     }
 
     @Override

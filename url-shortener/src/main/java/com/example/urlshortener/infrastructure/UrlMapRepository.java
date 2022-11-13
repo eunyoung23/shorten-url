@@ -20,14 +20,14 @@ public class UrlMapRepository implements UrlRepository {
 
     @Override
     public Optional<Url> getUrl(String shortenUrl) {
-        return Optional.ofNullable(urlMap.get(shortenUrl));
+       return Optional.ofNullable(urlMap.get(shortenUrl));
     }
 
     @Override
-    public String getShortenByOriginalUrl(String originalUrl) {
+    public Optional<Url> getUrlByOriginalUrl(String originalUrl) {
         for(Url url:urlMap.values()){
             if(url.getOriginalUrl().equals(originalUrl)){
-                return url.getShortenUrl();
+                return Optional.of(url);
             }
         }
         return null;

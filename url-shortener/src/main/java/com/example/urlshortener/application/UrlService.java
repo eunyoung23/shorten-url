@@ -22,7 +22,7 @@ public class UrlService {
 
     public String createUrl(String originalUrl){
         if(urlRepository.isExistOriginalUrl(originalUrl)){
-            return urlRepository.getShortenByOriginalUrl(originalUrl);
+            return urlRepository.getUrlByOriginalUrl(originalUrl).get().getShortenUrl();
         }else{
             String shortenUrl=base62.encoding(new Random(System.currentTimeMillis()).nextInt(100000000));
             urlRepository.save(Url.urlBuiler(originalUrl,shortenUrl,0));
