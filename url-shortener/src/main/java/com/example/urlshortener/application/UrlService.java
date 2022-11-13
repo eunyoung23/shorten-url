@@ -6,11 +6,12 @@ import com.example.urlshortener.infrastructure.Base62;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Random;
+
 @Service
 public class UrlService {
 
     private UrlRepository urlRepository;
-    private static long sequence=1L;
     private Base62 base62;
 
     @Autowired
@@ -23,7 +24,7 @@ public class UrlService {
         if(urlRepository.isExistOriginalUrl(originalUrl)){
             return urlRepository.getShortenByOriginalUrl(originalUrl);
         }else{
-            String shortenUrl=base62.encoding(sequence++);
+            String shortenUrl=base62.encoding(new Random(System.currentTimeMillis()).nextInt(100000000));
             urlRepository.save(Url.urlBuiler(originalUrl,shortenUrl,0));
             return shortenUrl;
         }
