@@ -4,8 +4,10 @@ import java.util.Optional;
 
 public interface UrlRepository {
 
-    String save(String originalUrl);
+    void save(Url url);
     Optional<Url> getUrl(String shortenUrl);
+    String getShortenByOriginalUrl(String originalUrl);
     void addRequestCnt(String original);
+    boolean isExistOriginalUrl(String originalUrl);
 
 }
