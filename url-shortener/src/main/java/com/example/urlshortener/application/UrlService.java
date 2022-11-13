@@ -1,34 +1,34 @@
 package com.example.urlshortener.application;
 
 import com.example.urlshortener.domain.Url;
-import com.example.urlshortener.infrastructure.UrlMemoryRepository;
+import com.example.urlshortener.domain.UrlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UrlService {
 
-    private UrlMemoryRepository urlMemoryRepository;
+    private UrlRepository urlRepository;
 
     @Autowired
-    public UrlService(UrlMemoryRepository urlMemoryRepository) {
-        this.urlMemoryRepository = urlMemoryRepository;
+    public UrlService(UrlRepository urlRepository) {
+        this.urlRepository = urlRepository;
     }
 
     public String createUrl(String originalUrl){
-        return urlMemoryRepository.save(originalUrl);
+        return urlRepository.save(originalUrl);
     }
 
     public int getCnt(String shortenUrl){
-        return urlMemoryRepository.getUrl(shortenUrl).map(Url::getRequestCnt).get();
+        return urlRepository.getUrl(shortenUrl).map(Url::getRequestCnt).get();
     }
 
     public String getOriginal(String shortenUrl){
-        return urlMemoryRepository.getUrl(shortenUrl).map(Url::getOriginalUrl).orElse(null);
+        return urlRepository.getUrl(shortenUrl).map(Url::getOriginalUrl).orElse(null);
     }
 
     public void addRequestCnt(String originalUrl){
-        urlMemoryRepository.addRequestCnt(originalUrl);
+        urlRepository.addRequestCnt(originalUrl);
     }
 
 

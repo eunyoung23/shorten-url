@@ -10,15 +10,15 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-@Repository
-public class UrlMemoryRepository implements UrlRepository {
+//@Repository
+public class UrlListRepository implements UrlRepository {
 
     private static List<Url> urlStore=new ArrayList<>();
     private static long sequence=1L;
     private Base62 base62;
 
     @Autowired
-    public UrlMemoryRepository(Base62 base62) {
+    public UrlListRepository(Base62 base62) {
         this.base62 = base62;
     }
 
@@ -43,12 +43,11 @@ public class UrlMemoryRepository implements UrlRepository {
     @Override
     public synchronized void addRequestCnt(String original) {
         for(Url url:urlStore){
-            if(url.getOriginalUrl()==original){
+            if(url.getOriginalUrl().equals(original)){
                 int num=url.getRequestCnt();
                 urlStore.set(urlStore.indexOf(url),Url.urlBuiler(original,url.getShortenUrl(),++num));
             }
         }
     }
-
 
 }
