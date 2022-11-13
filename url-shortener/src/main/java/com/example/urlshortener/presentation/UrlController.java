@@ -27,8 +27,8 @@ public class UrlController {
         return new ResponseEntity<>(new CreateUrlResponse(200,shortenUrl),HttpStatus.OK);
     }
 
-    @GetMapping("/")
-    public ResponseEntity<Object> redirectUrl(@RequestParam String shortenUrl) throws URISyntaxException {
+    @GetMapping("/{shortenUrl}")
+    public ResponseEntity<Object> redirectUrl(@PathVariable String shortenUrl) throws URISyntaxException {
         String original=urlService.getOriginal(shortenUrl);
         urlService.addRequestCnt(original);
 
@@ -37,8 +37,8 @@ public class UrlController {
         return new ResponseEntity<>(httpHeaders,HttpStatus.MOVED_PERMANENTLY);
     }
 
-    @GetMapping("/count")
-    public ResponseEntity<Object> getRequestCnt(@RequestParam String shortenUrl){
+    @GetMapping("/count/{shortenUrl}")
+    public ResponseEntity<Object> getRequestCnt(@PathVariable String shortenUrl){
         int cnt=urlService.getCnt(shortenUrl);
         return new ResponseEntity<>(new GetCntResponse(200,cnt), HttpStatus.OK);
     }
