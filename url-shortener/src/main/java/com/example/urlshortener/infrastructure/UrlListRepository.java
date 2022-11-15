@@ -29,12 +29,9 @@ public class UrlListRepository implements UrlRepository {
 
     @Override
     public synchronized void addRequestCnt(String original) {
-        for(Url url:urlStore){
-            if(url.getOriginalUrl().equals(original)){
-                int num=url.getRequestCnt();
-                urlStore.set(urlStore.indexOf(url),Url.urlBuiler(original,url.getShortenUrl(),++num));
-            }
-        }
+        Url url=urlStore.stream().filter(e->e.getOriginalUrl().equals(original)).findFirst().get();
+        int num=url.getRequestCnt();
+        urlStore.set(urlStore.indexOf(url),Url.urlBuiler(original,url.getShortenUrl(),++num));
     }
 
     @Override
@@ -44,6 +41,5 @@ public class UrlListRepository implements UrlRepository {
         }
         return false;
     }
-
 
 }

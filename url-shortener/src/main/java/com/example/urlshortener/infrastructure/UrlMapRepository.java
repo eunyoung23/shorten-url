@@ -25,30 +25,20 @@ public class UrlMapRepository implements UrlRepository {
 
     @Override
     public Optional<Url> getUrlByOriginalUrl(String originalUrl) {
-        for(Url url:urlMap.values()){
-            if(url.getOriginalUrl().equals(originalUrl)){
-                return Optional.of(url);
-            }
-        }
-        return null;
+        return Optional.ofNullable(urlMap.values().stream().filter(e -> e.getOriginalUrl().equals(originalUrl)).findAny().get());
     }
 
     @Override
     public synchronized void addRequestCnt(String original) {
-        for(Url url:urlMap.values()){
-            if(url.getOriginalUrl().equals(original)){
-                int num= url.getRequestCnt();
-                urlMap.put(url.getShortenUrl(), Url.urlBuiler(original,url.getShortenUrl(),++num));
-            }
-        }
+        Url url=urlMap.values().stream().filter(e->e.getOriginalUrl().equals(original)).findAny().get();
+        int num=url.getRequestCnt();
+        urlMap.put(url.getShortenUrl(),Url.urlBuiler(original,url.getShortenUrl(),++num));
     }
 
     @Override
     public boolean isExistOriginalUrl(String originalUrl) {
-        for(Url url:urlMap.values()){
-            if(url.getOriginalUrl().equals(originalUrl)){
-                return true;
-            }
+        if(urlMap.values().stream().filter(e->e.getOriginalUrl().equals(originalUrl)).count()>0){
+            return true;
         }
         return false;
     }
