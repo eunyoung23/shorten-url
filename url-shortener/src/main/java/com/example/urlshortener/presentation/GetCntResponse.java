@@ -5,11 +5,9 @@ import lombok.Getter;
 @Getter
 public class GetCntResponse {
 
-    private final int statusCode;
     private final int count;
 
-    public GetCntResponse(int statusCode, int count) {
-        this.statusCode = statusCode;
+    public GetCntResponse(int count) {
         this.count = count;
     }
 }

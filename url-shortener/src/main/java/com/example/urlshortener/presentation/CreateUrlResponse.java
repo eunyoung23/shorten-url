@@ -5,11 +5,9 @@ import lombok.Getter;
 @Getter
 public class CreateUrlResponse {
 
-    private final int statusCode;
     private final String shortenUrl;
 
-    public CreateUrlResponse(int statusCode, String shortenUrl) {
-        this.statusCode = statusCode;
+    public CreateUrlResponse(String shortenUrl) {
         this.shortenUrl = shortenUrl;
     }
 }

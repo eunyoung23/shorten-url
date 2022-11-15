@@ -24,7 +24,7 @@ public class UrlController {
     @PostMapping("/")
     public ResponseEntity<CreateUrlResponse> createUrl(@RequestBody UrlRequest urlRequest){
         String shortenUrl=urlService.createUrl(urlRequest.getOriginalUrl());
-        return new ResponseEntity<>(new CreateUrlResponse(200,shortenUrl),HttpStatus.OK);
+        return new ResponseEntity<>(new CreateUrlResponse(shortenUrl),HttpStatus.OK);
     }
 
     @GetMapping("/{shortenUrl}")
@@ -40,7 +40,7 @@ public class UrlController {
     @GetMapping("/count/{shortenUrl}")
     public ResponseEntity<Object> getRequestCnt(@PathVariable String shortenUrl){
         int cnt=urlService.getCnt(shortenUrl);
-        return new ResponseEntity<>(new GetCntResponse(200,cnt), HttpStatus.OK);
+        return new ResponseEntity<>(new GetCntResponse(cnt), HttpStatus.OK);
     }
 
 

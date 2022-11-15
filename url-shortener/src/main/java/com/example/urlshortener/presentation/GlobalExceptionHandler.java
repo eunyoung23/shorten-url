@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<FailResponse> handler(){
-        return ResponseEntity.status(404).body(new FailResponse(404));
+    public ResponseEntity<Object> handler(){
+        return ResponseEntity.status(404).build();
     }
 
 }
