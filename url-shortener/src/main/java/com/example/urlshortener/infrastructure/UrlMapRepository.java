@@ -20,19 +20,27 @@ public class UrlMapRepository implements UrlRepository {
 
     @Override
     public Optional<Url> getUrl(String shortenUrl) {
-       return Optional.ofNullable(urlMap.get(shortenUrl));
+        Url url = urlMap.get(shortenUrl);
+        return Optional.ofNullable(url);
     }
 
     @Override
     public Optional<Url> getUrlByOriginalUrl(String originalUrl) {
-        return Optional.ofNullable(urlMap.values().stream().filter(e -> e.getOriginalUrl().equals(originalUrl)).findAny().get());
+        Url url = urlMap.values().stream()
+                .filter(e-> e.getOriginalUrl().equals(originalUrl))
+                .findAny().get();
+        return Optional.ofNullable(url);
     }
 
     @Override
     public synchronized void addRequestCnt(String original) {
-        Url url=urlMap.values().stream().filter(e->e.getOriginalUrl().equals(original)).findAny().get();
-        int num=url.getRequestCnt();
-        urlMap.put(url.getShortenUrl(),Url.urlBuiler(original,url.getShortenUrl(),++num));
+        Url url = urlMap.values().stream()
+                .filter(e->e.getOriginalUrl().equals(original))
+                .findAny().get();
+        int num = url.getRequestCnt();
+        String shortenUrl = url.getShortenUrl();
+        Url getUrl = Url.urlBuiler(original,shortenUrl,++num);
+        urlMap.put(shortenUrl,getUrl);
     }
 
     @Override

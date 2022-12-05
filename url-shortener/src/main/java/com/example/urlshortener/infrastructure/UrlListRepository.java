@@ -19,19 +19,29 @@ public class UrlListRepository implements UrlRepository {
 
     @Override
     public Optional<Url> getUrl(String shortenUrl) {
-        return urlStore.stream().filter(a->a.getShortenUrl().equals(shortenUrl)).findFirst();
+        return urlStore.stream()
+                .filter(a->a.getShortenUrl().equals(shortenUrl))
+                .findFirst();
     }
 
     @Override
     public Optional<Url> getUrlByOriginalUrl(String originalUrl) {
-        return urlStore.stream().filter(a -> a.getOriginalUrl().equals(originalUrl)).findFirst();
+        return urlStore.stream()
+                .filter(a -> a.getOriginalUrl().equals(originalUrl))
+                .findFirst();
     }
 
     @Override
     public synchronized void addRequestCnt(String original) {
-        Url url=urlStore.stream().filter(e->e.getOriginalUrl().equals(original)).findFirst().get();
-        int num=url.getRequestCnt();
-        urlStore.set(urlStore.indexOf(url),Url.urlBuiler(original,url.getShortenUrl(),++num));
+        Url url = urlStore.stream()
+                .filter(e->e.getOriginalUrl().equals(original))
+                .findFirst()
+                .get();
+        int num = url.getRequestCnt();
+        String shortenUrl = url.getShortenUrl();
+        int index = urlStore.indexOf(url);
+        Url getUrl = Url.urlBuiler(original,shortenUrl,++num);
+        urlStore.set(index,getUrl);
     }
 
     @Override
