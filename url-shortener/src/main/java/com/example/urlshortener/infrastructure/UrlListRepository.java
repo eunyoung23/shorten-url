@@ -2,12 +2,15 @@ package com.example.urlshortener.infrastructure;
 
 import com.example.urlshortener.domain.Url;
 import com.example.urlshortener.domain.UrlRepository;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-//@Repository
+@Repository
+@Profile("list")
 public class UrlListRepository implements UrlRepository {
 
     private static List<Url> urlStore=new ArrayList<>();

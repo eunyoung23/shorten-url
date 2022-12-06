@@ -2,6 +2,7 @@ package com.example.urlshortener.infrastructure;
 
 import com.example.urlshortener.domain.Url;
 import com.example.urlshortener.domain.UrlRepository;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.Map;
@@ -9,6 +10,7 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
+@Profile("map")
 public class UrlMapRepository implements UrlRepository {
 
     private static Map<String,Url> urlMap=new ConcurrentHashMap<>();
@@ -24,6 +26,7 @@ public class UrlMapRepository implements UrlRepository {
         return Optional.ofNullable(url);
     }
 
+
     @Override
     public Optional<Url> getUrlByOriginalUrl(String originalUrl) {
         Url url = urlMap.values().stream()
@@ -31,6 +34,7 @@ public class UrlMapRepository implements UrlRepository {
                 .findAny().get();
         return Optional.ofNullable(url);
     }
+
 
     @Override
     public synchronized void addRequestCnt(String original) {

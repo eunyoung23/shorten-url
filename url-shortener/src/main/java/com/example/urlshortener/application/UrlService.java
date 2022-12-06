@@ -34,7 +34,7 @@ public class UrlService {
     }
 
     public String getOriginal(String shortenUrl){
-        return urlRepository.getUrl(shortenUrl).map(Url::getOriginalUrl).orElse(null);
+        return urlRepository.getUrl(shortenUrl).map(Url::getOriginalUrl).get();
     }
 
     public void addRequestCnt(String originalUrl){
