@@ -27,7 +27,7 @@ class UrlServiceTest {
 
 
     @Test
-    @DisplayName("단축 url로 원래 url을 조회시 원래 url이 없으면 null값이 반환되어야 한다.")
+    @DisplayName("단축 url로 원래 url을 조회시 원래 url이 없으면 예외가 발생해야한다.")
     void getOriginalUrlByShortenTest(){
         String shortenUrl="ABCD";
 

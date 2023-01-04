@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(RuntimeException.class)
+    @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<Object> handler(){
         return ResponseEntity.status(404).build();
     }
